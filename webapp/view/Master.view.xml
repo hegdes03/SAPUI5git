@@ -1,0 +1,104 @@
+<mvc:View xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:msemantic="sap.m.semantic" xmlns:mvc="sap.ui.core.mvc"
+	xmlns:core="sap.ui.core" xmlns:layout="sap.ui.layout" controllerName="PM.WORKORDER.controller.Master">
+	<semantic:SemanticPage id="masterPage" preserveHeaderStateOnScroll="false" toggleHeaderOnTitleClick="false" showFooter="true">
+		<!-- Title Heading-->
+		<semantic:titleHeading>
+					<Image id="blueimg" src="images/BlueColorNew.png" width="100%"/>
+		</semantic:titleHeading>
+		<!-- Header Content -->
+		<semantic:headerContent>
+			<layout:HorizontalLayout allowWrapping="true">
+					<Image src="images/BlueColorNew.png" width="100%" visible="false"/>
+				<layout:VerticalLayout id="vertilay" class="sapUiMediumMarginEnd">
+					<Label text="Plant" labelFor="plantInput"/>
+					<Input 
+					id="plantInput" 
+					width="100%" 
+					required="true" 
+					placeholder="Enter Plant ..." 
+					showSuggestion="true"
+					suggestionItems="{/PlantSet}">
+						<suggestionItems>
+							<core:ListItem text="{Werks}" additionalText="{PlantDesc}"/>
+						</suggestionItems>
+					</Input>
+					<RadioButtonGroup id="word" width="100%" columns="3">
+						<buttons>
+							<RadioButton text="Open Order" id="openwo"/>
+							<RadioButton text="All Order" id="allwo"/>
+							<RadioButton text="Closed Order" id="closedwo"/>
+						</buttons>
+					</RadioButtonGroup>
+					<Label text="Basic Start Date" labelFor="BSD"/>
+				    <DateRangeSelection id="BSD" displayFormat="yyyy/MM/dd"  placeholder="Enter Basic Start Date" secondDateValue="" dateValue="" delimiter="~"/>
+					<Label text="Basic Finish Date" labelFor="BFD"/>
+					<DateRangeSelection id="BFD" displayFormat="yyyy/MM/dd" placeholder="Enter Basic Finish Date" secondDateValue="" dateValue="" delimiter="~"/>
+					<Label text="Work Order Type" labelFor="wotype"/>
+					<Input id="wotype" type="Text" width="100%" placeholder="Enter Order Type ..." 	>
+					</Input>
+					<Label text="Functional Location" labelFor="funclocat"/>
+					<layout:HorizontalLayout>
+						<Input id="funclocat" type="Text" width="100%" placeholder="Enter Functional location "></Input>
+						<Button id="funcbutton" icon="sap-icon://bar-code" press="onBarcodescan"/>
+					</layout:HorizontalLayout>
+					<Label text="Equipment" labelFor="equipment"/>
+					<layout:HorizontalLayout>
+						<Input id="equipment" type="Text" width="100%" placeholder="Equipment"></Input>
+						<Button id="equibutton" icon="sap-icon://bar-code" press="onBarcodescan" class="sapUiSmallMarginEnd"/>
+					</layout:HorizontalLayout>
+					<Label text="Work Center" labelFor="workcenter"/>
+					<layout:HorizontalLayout>
+						<Input id="workcenter" type="Text" width="100%" placeholder="Work Center"></Input>
+						<Button id="wrkcbutton" icon="sap-icon://bar-code" press="onBarcodescan" class="sapUiSmallMarginEnd"/>
+					</layout:HorizontalLayout>
+				</layout:VerticalLayout>
+			</layout:HorizontalLayout>
+		</semantic:headerContent>
+		<semantic:content>
+			<!-- For client side filtering add this to the items attribute: parameters: {operationMode: 'Client'}}" -->
+			<List id="orderlist" width="auto" class="sapFDynamicPageAlignContent" items="{/results}" busyIndicatorDelay="{masterView>/delay}"
+				noDataText="{masterView>/noDataText}" mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}" growing="true"
+				growingScrollToLoad="true" updateFinished=".onUpdateFinished" selectionChange=".onSelectionChange">
+				<headerToolbar>
+					<OverflowToolbar>
+						<layout:HorizontalLayout>
+					<Button id="input" visible="true" icon="sap-icon://undo" tooltip="Go to Input Screen"
+						press="onInput"/>
+						<SearchField id="searchField" showRefreshButton="true" tooltip="{i18n>masterSearchTooltip}" search=".onSearch" width="auto">
+							<layoutData>
+								<OverflowToolbarLayoutData minWidth="150px" maxWidth="240px" shrinkable="true" priority="NeverOverflow"/>
+							</layoutData>
+						</SearchField>
+						<ToolbarSpacer/>
+					</layout:HorizontalLayout>
+					</OverflowToolbar>
+				</headerToolbar>
+				<CustomListItem>
+					<layout:VerticalLayout>
+						<Title text="{Aufnr}" level="H3"></Title>
+						<layout:HorizontalLayout>
+							<Label text="Work Order Type: "></Label>
+							<Text text="{Auart}"></Text>
+						</layout:HorizontalLayout>
+						<layout:HorizontalLayout>
+							<Label text="Description: "></Label>
+							<Text text="{Ktext}"></Text>
+							</layout:HorizontalLayout><layout:HorizontalLayout>
+							<Label text="Work Center: "></Label>
+							<Text text="{Gewrk}"></Text>
+						</layout:HorizontalLayout>
+						<layout:HorizontalLayout>
+							<Label text="Equipment: "></Label>
+							<Text text="{Equnr}"></Text>
+						</layout:HorizontalLayout>
+							<CheckBox selected="" editable="false" text="Breakdown" textAlign="Left"></CheckBox>
+					</layout:VerticalLayout>
+				</CustomListItem>
+			</List>
+		</semantic:content>
+		<semantic:footerCustomActions>
+			<Button id="run" text="Search" press="onRun" icon="sap-icon://future" type="Accept"/>
+			<Button id="create" tooltip="Create" press="onCreate" icon="sap-icon://create" type="Accept"/>
+		</semantic:footerCustomActions>
+	</semantic:SemanticPage>
+</mvc:View>

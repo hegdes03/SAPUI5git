@@ -1,0 +1,52 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" id="fragid"
+ xmlns:core="sap.ui.core">
+ <Dialog title="Add Operation" id="ListDialog" afterClose="onAfterClose">
+  <l:VerticalLayout>
+   <l:HorizontalLayout class="sapUiContentPadding">
+   	<Label text= "Operation Number:" id="opr" labelFor="oprno"></Label>
+   	<Input id="oprno" value="{addopr>/Activity}" editable="true" ></Input>
+   	</l:HorizontalLayout>
+   <l:HorizontalLayout class="sapUiContentPadding">
+   	<Label text= "Operation Text:" id="oprt" labelFor="oprtext" ></Label>
+   	<Input id="oprtext" value="{addopr>/OprText}" editable="true" ></Input>
+   	</l:HorizontalLayout>
+   	<l:HorizontalLayout class="sapUiContentPadding">
+    <Label text="Work Center:" labelFor="wrkc" />
+    <SearchField id="wrkc" value="{addopr>/WorkCenter}" placeholder="search for..."
+     enableSuggestions="true" search="onSearch" suggest="onSuggest">
+    </SearchField>
+   </l:HorizontalLayout>
+
+   <l:HorizontalLayout class="sapUiContentPadding">
+    <Label text="Control Key:" labelFor="ctrkey" />
+   	<Input id="ctrkey" value="{addopr>/ControlKey}" editable="true"></Input>
+   </l:HorizontalLayout>
+   
+   <l:HorizontalLayout class="sapUiContentPadding">
+    <Label text="Work:" labelFor="addoprwrk" />
+   	<Input id="addoprwrk" value="{addopr>/Work}" editable="true"></Input>
+   </l:HorizontalLayout>
+   <l:HorizontalLayout class="sapUiContentPadding">
+    <Label text="Number:" labelFor="addoprnum" />
+   	<Input id="addoprnum" value="{addopr>/Number}" editable="true"></Input>
+   </l:HorizontalLayout>
+   <l:HorizontalLayout class="sapUiContentPadding">
+    <Label text="UOM:" labelFor="addopruom" />
+   	<Text id="addopruom" text="{addopr>/Uom}"></Text>
+   </l:HorizontalLayout>
+   <l:HorizontalLayout class="sapUiContentPadding">
+    <Label text="Calculation Key:" labelFor="addoprcalckey" />
+   	<Input id="addoprcalckey" value="{addopr>/CalcKey}" editable="true"></Input>
+   </l:HorizontalLayout>
+   
+   <l:HorizontalLayout class="sapUiContentPadding">
+  <Button id="opradderase" icon="sap-icon://eraser" tooltip="Erase" press="onOprAddErase"></Button>
+  <Button id="opraddsave" icon="sap-icon://accept" tooltip="Save" press="onOprAddSave"></Button>
+  <Button id="opraddcancel" icon="sap-icon://decline" tooltip="Cancel" press="onOprAddCancel"></Button>
+  </l:HorizontalLayout>
+  </l:VerticalLayout>
+  
+  	
+ </Dialog>
+
+</core:FragmentDefinition>

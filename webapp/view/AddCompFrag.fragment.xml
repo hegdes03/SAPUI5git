@@ -1,0 +1,32 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" id="Compfragid" xmlns:core="sap.ui.core">
+	<Dialog title="Add Component" id="ListCompDialog" afterClose="onAfterClose">
+		<l:VerticalLayout>
+			<l:HorizontalLayout class="sapUiContentPadding">
+				<Label text="Item Number:" id="compno1" labelFor="comno"></Label>
+				<Text id="comno" text="{compAdd>/Item}"></Text>
+			</l:HorizontalLayout>
+			<l:HorizontalLayout class="sapUiContentPadding">
+				<Label text="Material:" id="comat" labelFor="cmat"></Label>
+				<Input id="cmat" value="{compAdd>/Material}" editable="true"></Input>
+			</l:HorizontalLayout>
+			<l:HorizontalLayout class="sapUiContentPadding">
+				<Label text="Item Category:" labelFor="compicat"/>
+				<Input id="compicat" value="{compAdd>/Itemcat}" editable="true"></Input>
+				<SearchField id="compitemcat1" placeholder="search for..." enableSuggestions="true" search="onSearch" suggest="onSuggest"></SearchField>
+			</l:HorizontalLayout>
+			<l:HorizontalLayout class="sapUiContentPadding">
+				<Label text="Requirement Quantity:" labelFor="comprequiredqty"/>
+				<Input id="comprequiredqty" value="{compAdd>/Requirementquantity}" editable="true"></Input>
+			</l:HorizontalLayout>
+			<l:HorizontalLayout class="sapUiContentPadding">
+				<Label text="Operation Number:" labelFor="compactivity"/>
+				<Input id="compactivity" value="{compAdd>/Activity}" editable="true"></Input>
+			</l:HorizontalLayout>
+			<l:HorizontalLayout class="sapUiContentPadding">
+				<Button id="compadderase" icon="sap-icon://eraser" tooltip="Erase" press="onCompAddErase"></Button>
+				<Button id="compaddsave" icon="sap-icon://accept" tooltip="Save" press="onCompAddSave"></Button>
+				<Button id="compaddcancel" icon="sap-icon://decline" tooltip="Cancel" press="onCompAddCancel"></Button>
+			</l:HorizontalLayout>
+		</l:VerticalLayout>
+	</Dialog>
+</core:FragmentDefinition>

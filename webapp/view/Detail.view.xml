@@ -1,0 +1,1326 @@
+<mvc:View controllerName="PM.WORKORDER.controller.Detail" xmlns="sap.m" xmlns:semantic="sap.f.semantic" xmlns:core="sap.ui.core"
+	xmlns:t="sap.ui.table" xmlns:footerbar="sap.ushell.ui.footerbar" xmlns:mvc="sap.ui.core.mvc" xmlns:l="sap.ui.layout"
+	xmlns:f="sap.ui.layout.form" xmlns:u="sap.ui.unified">
+	<semantic:SemanticPage id="detailPage" busy="{detailView>/busy}" busyIndicatorDelay="{detailView>/delay}">
+		<semantic:titleHeading>
+			<Title id="headtitle" text="{/Orderid}"/>
+		</semantic:titleHeading>
+		<!-- Title Content-->
+		<semantic:titleContent></semantic:titleContent>
+		<!-- Custom Title Icon Content-->
+		<semantic:titleCustomIconActions></semantic:titleCustomIconActions>
+		<!-- Custom Share Actions -->
+		<semantic:customShareActions></semantic:customShareActions>
+		<!-- TitleExpanded content-->
+		<semantic:titleSnappedContent></semantic:titleSnappedContent>
+		<!-- Header Content -->
+		<semantic:headerContent></semantic:headerContent>
+		<semantic:content>
+			<VBox>
+				<HBox direction="RowReverse">
+					<core:Icon src="sap-icon://save" tooltip="Save" color="#A52A2A" hoverBackgroundColor="#D2B48C" press="handlesave" height="2rem" width="2rem"
+						size="2rem"></core:Icon>
+					<core:Icon src="sap-icon://flag" tooltip="Technically Complete" color="#FF8C00" hoverBackgroundColor="#FFE4C4" press="handleteco"
+						height="2rem" width="2rem" size="2rem"></core:Icon>
+					<core:Icon src="sap-icon://flag" tooltip="Release" color="#006400" hoverBackgroundColor="#98FB98" press="handlerelease" height="2rem"
+						width="2rem" size="2rem"></core:Icon>
+				</HBox>
+				<IconTabBar id="idIconTabBarMulti" expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+					<items>
+						<IconTabFilter id="headtabicon" icon="sap-icon://hint" key="headKey">
+							<OverflowToolbar class="sapUiMediumMarginTop">
+								<Title id="Title1" text="Header"/>
+								<ToolbarSpacer/>
+							</OverflowToolbar>
+							<ScrollContainer height="100%" width="100%" vertical="true">
+								<FlexBox alignItems="Start">
+									<Label text="Order Description" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input  value="{/ShortText}" width="75%" class="sapUiSmallMarginEnd" maxLength="40">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Status" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/SysStatus}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Plant" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Plant}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Planner Group" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Plangroup}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="PM Activity Type" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input value="{/Pmacttype}" width="15%" class="sapUiSmallMarginEnd" maxLength="3">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Basic Start Date" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/StartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Basic Finish Date" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/FinishDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Priority" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input value="{/Priority}" width="5%" class="sapUiSmallMarginEnd" maxLength="1">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Functional Location" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input value="{/FunctLoc}" width="100%" class="sapUiSmallMarginEnd" description="{/FunctLocDesc}">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Equipment" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input value="{/Equipment}" width="100%" class="sapUiSmallMarginEnd" description="{/EquipmentDesc}">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Notification" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/NotifNo}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Breakdown" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{=${/Breakdown}==='true' ? 'Yes' : 'No'}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Breakdown Duration" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Duration}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Mal Funct Start" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label><Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/MalfunctionStart', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyyMMdd' } } }">
+									
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Reported By" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/ReportedBy}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Damage" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Damage}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Cause" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Cause}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter id="headtabicon52" icon="sap-icon://show-edit" key="headKey3n2">
+							<OverflowToolbar class="sapUiMediumMarginTop">
+								<Title id="Titlemnm" text="Header(Test Tab)"/>
+								<ToolbarSpacer/>
+									<Button id="headdisp52" tooltip="Display" visible="false" icon="sap-icon://display" press="oprheaddisp52"/>
+								<Button id="headedit52" tooltip="Edit" icon="sap-icon://edit" press="oprheadedit52"/>
+							</OverflowToolbar>
+							<ScrollContainer height="100%" width="100%" vertical="true">
+								<FlexBox alignItems="Start">
+									<Label text="Order Description" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id= "headdes52" text="{/ShortText}" width="75%" class="sapUiSmallMarginEnd" >
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Input id= "headdes52i" value="{/ShortText}" visible="false" width="75%" class="sapUiSmallMarginEnd" maxLength="40">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Status" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/SysStatus}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Plant" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Plant}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Planner Group" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Plangroup}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="PM Activity Type" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id= "headpmact52" text="{/Pmacttype}" width="100%" class="sapUiSmallMarginEnd" >
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Input id= "headpmact52i" value="{/Pmacttype}" visible="false" width="10%" class="sapUiSmallMarginEnd" maxLength="3">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Basic Start Date" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/StartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Basic Finish Date" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/FinishDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Priority" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id= "headpmpri52" text="{/Priority}" width="100%" class="sapUiSmallMarginEnd" >
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Input id="headpmpri52i" value="{/Priority}" visible="false" width="5%" class="sapUiSmallMarginEnd" maxLength="1">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Functional Location" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id="headfun52" text="{/FunctLoc} ({/FunctLocDesc})" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Text>
+									<Input id="headfun52i" value="{/FunctLoc}" visible="false"  width="100%" class="sapUiSmallMarginEnd" description="{/FunctLocDesc}">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Equipment" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id="headequ52" text="{/Equipment} ({/EquipmentDesc})" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Text>
+									<Input id="headequ52i" value="{/Equipment}" visible="false"  width="100%" class="sapUiSmallMarginEnd" description="{/EquipmentDesc}">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Notification" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/NotifNo}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Breakdown" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{=${/Breakdown}==='true' ? 'Yes' : 'No'}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Breakdown Duration" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Duration}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Mal Funct Start" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/MalfunctionStart}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Reported By" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/ReportedBy}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Damage" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Damage}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Cause" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Cause}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter id="headtabicon4" icon="sap-icon://business-by-design" key="headKey3">
+							<OverflowToolbar class="sapUiMediumMarginTop">
+								<Title id="Titlem" text="Header(Test tab)"/>
+								<ToolbarSpacer/>
+							</OverflowToolbar>
+							<ScrollContainer height="100%" width="100%" vertical="true">
+								<FlexBox alignItems="Start">
+									<Label text="Order Description" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input value="{/ShortText}"  width="75%" class="sapUiSmallMarginEnd" maxLength="40">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Status" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/SysStatus}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<ToolbarSeparator/>
+								<FlexBox alignItems="Start">
+									<Label text="Plant" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Plant}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Planner Group" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Plangroup}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="PM Activity Type" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input value="{/Pmacttype}" width="15%" class="sapUiSmallMarginEnd" maxLength="3">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<ToolbarSeparator/>
+								<FlexBox alignItems="Start">
+									<Label text="Basic Start Date" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/StartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Basic Finish Date" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/FinishDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Priority" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input value="{/Priority}" width="5%" class="sapUiSmallMarginEnd" maxLength="1">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<ToolbarSeparator/>
+								<FlexBox alignItems="Start">
+									<Label text="Functional Location" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input value="{/FunctLoc}" width="100%" class="sapUiSmallMarginEnd" description="{/FunctLocDesc}">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Equipment" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Input value="{/Equipment}" width="100%" class="sapUiSmallMarginEnd"  description="{/EquipmentDesc}">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<ToolbarSeparator/>
+								<FlexBox alignItems="Start">
+									<Label text="Notification" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/NotifNo}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Breakdown" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{=${/Breakdown}==='true' ? 'Yes' : 'No'}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Breakdown Duration" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Duration}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Mal Funct Start" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/MalfunctionStart}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Reported By" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/ReportedBy}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Damage" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Damage}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Cause" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Cause}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter id="headtabicon53" icon="sap-icon://card" key="headKey3n3">
+							<OverflowToolbar class="sapUiMediumMarginTop">
+								<Title id="Titlemn" text="Header(Test tab)"/>
+								<ToolbarSpacer/>
+									<Button id="headdisp" tooltip="Display" visible="false" icon="sap-icon://display" press="oprheaddisp"/>
+								<Button id="headedit" tooltip="Edit" icon="sap-icon://edit" press="oprheadedit"/>
+							</OverflowToolbar>
+							<ScrollContainer height="100%" width="100%" vertical="true">
+								<FlexBox alignItems="Start">
+									<Label text="Order Description" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id= "headdes53" text="{/ShortText}" width="75%" class="sapUiSmallMarginEnd" >
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Input id= "headdes53i" value="{/ShortText}" visible="false" width="75%" class="sapUiSmallMarginEnd" maxLength="40">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Status" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/SysStatus}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<ToolbarSeparator/>
+								<FlexBox alignItems="Start">
+									<Label text="Plant" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Plant}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Planner Group" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Plangroup}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="PM Activity Type" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id= "headpmact53" text="{/Pmacttype}" width="100%" class="sapUiSmallMarginEnd" >
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Input id= "headpmact53i" value="{/Pmacttype}" visible="false" width="10%" class="sapUiSmallMarginEnd" maxLength="3">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<ToolbarSeparator/>
+								<FlexBox alignItems="Start">
+									<Label text="Basic Start Date" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/StartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Basic Finish Date" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/FinishDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Priority" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id= "headpmpri53" text="{/Priority}" width="100%" class="sapUiSmallMarginEnd" >
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Input id="headpmpri53i" value="{/Priority}" visible="false" width="5%" class="sapUiSmallMarginEnd" maxLength="1">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<ToolbarSeparator/>
+								<FlexBox alignItems="Start">
+									<Label text="Functional Location" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id="headfun53" text="{/FunctLoc} ({/FunctLocDesc})" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Text>
+									<Input id="headfun53i" value="{/FunctLoc}" visible="false"  width="100%" class="sapUiSmallMarginEnd" description="{/FunctLocDesc}">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Equipment" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text id="headequ53" text="{/Equipment} ({/EquipmentDesc})" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Text>
+									<Input id="headequ53i" value="{/Equipment}" visible="false"  width="100%" class="sapUiSmallMarginEnd"  description="{/EquipmentDesc}">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Input>
+								</FlexBox>
+								<ToolbarSeparator/>
+								<FlexBox alignItems="Start">
+									<Label text="Notification" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/NotifNo}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Breakdown" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{=${/Breakdown}==='true' ? 'Yes' : 'No'}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Breakdown Duration" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Duration}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Mal Funct Start" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/MalfunctionStart}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+								<FlexBox alignItems="Start">
+									<Label text="Reported By" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/ReportedBy}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Damage" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Damage}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+									<Label text="Cause" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="0"/>
+										</layoutData>
+									</Label>
+									<Text text="{/Cause}" width="100%" class="sapUiSmallMarginEnd">
+										<layoutData>
+											<FlexItemData growFactor="1"/>
+										</layoutData>
+									</Text>
+								</FlexBox>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter id="headtabicon2" icon="sap-icon://accelerated" key="headKey2">
+							<OverflowToolbar class="sapUiMediumMarginTop">
+								<Title id="Titlen" text="Header(Test tab)"/>
+								<ToolbarSpacer/>
+							</OverflowToolbar>
+							<VBox class="sapUiSmallMargin">
+								<f:SimpleForm id="SimpleFormDisplay480_12120Dual" editable="false" layout="ResponsiveGridLayout" title="" labelSpanXL="4" labelSpanL="4"
+									labelSpanM="12" labelSpanS="12" adjustLabelSpan="false" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="3"
+									columnsL="3" columnsM="3" singleContainerFullSize="false">
+									<f:content>
+										<Label text="Order Description"/>
+										<Text text="{/ShortText}"/>
+										<Label text="Status"/>
+										<Text text="{/SysStatus}"/>
+										<Label text="Plant"/>
+										<Text text="{/Plant}"/>
+										<Label text="Planner Group"/>
+										<Text text="{/Plangroup}"/>
+										<Label text="PM Activity Type"/>
+										<Text text="{/Pmacttype}"/>
+										<Label text="Basic Start Date"/>
+										<Text width="100%" class="sapUiSmallMarginEnd"
+											text="{ path: '/StartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }"/>
+										<Label text="Basic Finish Date"/>
+										<Text width="100%" class="sapUiSmallMarginEnd"
+											text="{ path: '/FinishDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }"/>
+										<Label text="Functional Location"/>
+										<Text text="{/FunctLoc} ({/FunctLocDesc})"/>
+										<Label text="Equipment"/>
+										<Text text="{/Equipment} ({/EquipmentDesc})"/>
+										<Label text="Notification"/>
+										<Text text="{/NotifNo}"/>
+										<Label text="Breakdown"/>
+										<Text text="{=${/Breakdown}==='true' ? 'Yes' : 'No'}" width="100%" class="sapUiSmallMarginEnd"/>
+										<Label text="Breakdown Duration"/>
+										<Text text="{/Duration}"/>
+										<Label text="Mal Funct Start"/>
+										<Text text="{/MalfunctionStart}"/>
+										<Label text="Reported By"/>
+										<Text text="{/ReportedBy}"/>
+										<Label text="Cause"/>
+										<Text text="{/Cause}"/>
+									</f:content>
+								</f:SimpleForm>
+							</VBox>
+						</IconTabFilter>
+						<IconTabFilter id="oprtabicon3" icon="sap-icon://activate" key="oprnKey3">
+							<OverflowToolbar class="sapUiMediumMarginTop">
+								<Title id="Titlemnmn" text="Header(Test tab)"/>
+								<ToolbarSpacer/>
+									<Button id="headdisp54" tooltip="Display" visible="false" icon="sap-icon://display" press="oprheaddisp54"/>
+								<Button id="headedit54" tooltip="Edit" icon="sap-icon://edit" press="oprheadedit54"/>
+							</OverflowToolbar>
+							<f:Form id="headform" editable="false">
+								<f:layout>
+									<f:ResponsiveGridLayout 
+									labelSpanXL="3" 
+									labelSpanL="3" 
+									labelSpanM="3" 
+									labelSpanS="12" 
+									adjustLabelSpan="false" 
+									emptySpanXL="5" 
+									emptySpanL="5"
+									emptySpanM="0" 
+									emptySpanS="0" 
+									columnsXL="2"
+									columnsL="1" 
+									columnsM="1" 
+									singleContainerFullSize="false"/>
+								</f:layout>
+								<f:formContainers>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Order Description">
+												<f:fields>
+													<Text text="{/ShortText}" id="desc" />
+													<Input value="{/ShortText}" id="desc1" visible="false"/>
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Status">
+												<f:fields>
+													<Text text="{/SysStatus}" id="status"/>
+												</f:fields>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Plant">
+												<f:fields>
+													<Text text="{/Plant}" id="plant"/>
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Planner Group">
+												<f:fields>
+													<Text text="{/Plangroup}" />
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="PM Activity Type">
+												<f:fields>
+													<Text text="{/Pmacttype}" id="ilart"/>
+													<Input value="{/Pmacttype}" visible="false" id="ilart1" width="10%"/>
+												</f:fields>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Basic Start Date">
+												<f:fields>
+													<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/StartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }"/>
+											</f:fields>							
+											</f:FormElement>
+											<f:FormElement label="Basic Finish Date">
+												<f:fields>
+												<Text width="100%" class="sapUiSmallMarginEnd"
+										text="{ path: '/FinishDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }"/>
+										</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Priority">
+												<f:fields>
+													<Text text="{/Priority}" id="prio"/>
+													<Input value="{/Priority}" visible="false" id="prio1" width="10%"/>
+												</f:fields>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Functional Location">
+												<f:fields>
+													<Text text="{/FunctLoc} ({/FunctLocDesc})" id="tplnr"/>
+													<Input  value="{/FunctLoc}" visible="false" id="tplnr1" description="{/FunctLocDesc}"/>
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Equipment">
+												<f:fields>
+													<Text text="{/Equipment} ({/EquipmentDesc})" id="equnr"/>
+													<Input value="{/Equipment}" visible="false" id="equnr1"  description="{/EquipmentDesc}"/>
+												</f:fields>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+									<f:FormContainer>
+										<f:formElements>
+											<f:FormElement label="Notification">
+												<f:fields>
+													<Text text="{/NotifNo}" />
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Breakdown">
+												<f:fields>
+													<Text text="{=${/Breakdown}==='true' ? 'Yes' : 'No'}" width="100%" class="sapUiSmallMarginEnd"/>
+													</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Breakdown Duration">
+												<f:fields>
+													<Text text="{/Duration}" />
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Mal Funct Start">
+												<f:fields>
+													<Text text="{/MalfunctionStart}"/>
+													</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Reported By">
+												<f:fields>
+													<Text text="{/ReportedBy}" />
+												</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Damage">
+												<f:fields>
+													<Text text="{/Damage}"/>
+													</f:fields>
+											</f:FormElement>
+											<f:FormElement label="Cause">
+												<f:fields>
+													<Text text="{/Cause}"/>
+													</f:fields>
+											</f:FormElement>
+										</f:formElements>
+									</f:FormContainer>
+								</f:formContainers>
+							</f:Form>
+						</IconTabFilter>
+						<IconTabFilter id="oprtabicon" icon="sap-icon://add-equipment" key="oprnKey">
+							<OverflowToolbar class="sapUiMediumMarginTop">
+								<Title id="Title2" level="H1" text="Operations"/>
+								<ToolbarSpacer/>
+								<Button id="opradd" tooltip="Add Operation" icon="sap-icon://add" press="oprAdd"/>
+								<Button id="oprRemove" tooltip="Delete Operation" icon="sap-icon://decline" press="oprRemove"/>
+							</OverflowToolbar>
+							<ScrollContainer>
+								<List id="oprlist" items="{/results}" mode="MultiSelect">
+									<CustomListItem type="Active">
+										<l:VerticalLayout class="sapUiContentPadding">
+											<FlexBox alignItems="Start" width="100%">
+												<l:HorizontalLayout class="sapUiMediumMarginEnd">
+													<l:VerticalLayout >
+														<core:Icon size="5rem" src="sap-icon://crm-service-manager" color="#0000CD" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+														<l:HorizontalLayout>
+															<ToolbarSpacer width="2rem"/>
+															<Title text="{Activity}" level="H5"></Title>
+														</l:HorizontalLayout>
+													</l:VerticalLayout>
+													<ToolbarSpacer width="1rem"/>
+													<l:VerticalLayout >
+														<l:HorizontalLayout>
+															<Label text="Operation Text:" labelFor="oprtxt"/>
+															<Text id="oprtxt" text="{Description}"></Text>
+														</l:HorizontalLayout>
+														<l:HorizontalLayout>
+															<Label text="WorkCenter:" labelFor="wrkcenter"/>
+															<Text id="wrkcenter" text="{WorkCntr}"></Text>
+														</l:HorizontalLayout>
+														<l:HorizontalLayout>
+															<Label text="Early Start Date:" labelFor="oprstart"/>
+															<Text id="oprstart"
+																text="{ path: 'EarlSchedStartDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }"/>
+															<ToolbarSpacer width="5rem"/>
+															<Label text="Actual Work:" labelFor="opractwrk"/>
+															<Text id="opractwrk" text="{WorkActual} {UnWork}"></Text>
+														</l:HorizontalLayout>
+														<l:HorizontalLayout>
+															<Label text="Late Finish Date:" labelFor="oprfinish"/>
+															<Text id="oprfinish"
+																text="{ path: 'LateSchedFinDate', type: 'sap.ui.model.type.Date', formatOptions: { style: 'long', source: { pattern: 'yyyy-MM-dd' } } }"/>
+														</l:HorizontalLayout>
+														<l:HorizontalLayout>
+															<Label text="Status:" labelFor="oprstat"/>
+															<Text id="oprstat" text="{SystemStatusText}"></Text>
+														</l:HorizontalLayout>
+													</l:VerticalLayout>
+												</l:HorizontalLayout>
+											</FlexBox>
+											<l:HorizontalLayout>
+												<FlexBox renderType="Div">
+													<items>
+														<Label text="Planned Work " class="sapUiContentPadding">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Label>
+														<Input value="{WorkActivity}" editable="{= ${Complete} !== 'X' }" width="auto" class="sapUiSmallMarginEnd"
+															placeholder="Enter Planned Work...">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Input>
+														<Label text="Nb of resources">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Label>
+														<Input value="{NumberOfCapacities}" editable="{= ${Complete} !== 'X' }" width="auto" class="sapUiSmallMarginEnd"
+															placeholder="Enter Number of resources...">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Input>
+														<Label text="Duration">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Label>
+														<Input value="{DurationNormal}" width="auto" class="sapUiSmallMarginEnd" editable="{= ${Complete} !== 'X' }">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Input>
+														<Label text="UOM">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Label>
+														<Input value="{UnWork}" width="auto" class="sapUiSmallMarginEnd" showSuggestion="true" suggestionItems="{/PLANTSet}"
+															editable="{= ${Complete} !== 'X' }">
+															<suggestionItems>
+																<core:Item text="{Werks}"/>
+															</suggestionItems>
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Input>
+													</items>
+												</FlexBox>
+											</l:HorizontalLayout>
+											<l:HorizontalLayout>
+												<FlexBox renderType="Div">
+													<items>
+														<Label text="Actual Work">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Label>
+														<Input value="{ActWorkip}" editable="{= ${Complete} !== 'X' }" type="Number" width="auto" class="sapUiSmallMarginEnd"
+															placeholder="Enter Actual Work...">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Input>
+														<Label text="Personal ID">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Label>
+														<Input value="{Persnnoip}" editable="{= ${Complete} !== 'X' }" width="auto" class="sapUiSmallMarginEnd" placeholder="Enter Personal ID...">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Input>
+														<Button id="oprconf" tooltip="Confirm" icon="sap-icon://accept" press="handleoprconf" enabled="{= ${Complete} !== 'X' }">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Button>
+														<ToolbarSpacer width="1rem"/>
+														<Label text="Final Confirmation">
+															<layoutData>
+																<FlexItemData growFactor="1"/>
+															</layoutData>
+														</Label>
+														<CheckBox id="finalconfirmcheck" text="" selected="{FinalConfip}" editable="{= ${Complete} !== 'X' }"></CheckBox>
+													</items>
+												</FlexBox>
+											</l:HorizontalLayout>
+										</l:VerticalLayout>
+									</CustomListItem>
+								</List>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter id="comptabicon" icon="sap-icon://dimension" key="compKey">
+							<OverflowToolbar class="sapUiMediumMarginTop">
+								<Title id="Title3" level="H1" text="Components"/>
+								<ToolbarSpacer/>
+								<Button id="compadd" tooltip="Add Components" icon="sap-icon://add" press="compAdd"/>
+								<Button id="CompRemove" tooltip="Delete Components" icon="sap-icon://decline" press="compRemove"/>
+							</OverflowToolbar>
+							<ScrollContainer>
+								<List id="ComList" items="{/results}" mode="MultiSelect">
+									<items>
+										<CustomListItem type="Active" press="onListItemPress">
+											<l:HorizontalLayout >
+												<l:VerticalLayout >
+													<core:Icon size="4rem" src="sap-icon://action-settings" color="#0000CD" class="sapUiSmallMarginBegin sapUiSmallMarginTopBottom"/>
+													<l:HorizontalLayout>
+														<ToolbarSpacer width="2rem"/>
+														<Title text="{ItemNumber}" level="H5"></Title>
+													</l:HorizontalLayout>
+												</l:VerticalLayout>
+												<ToolbarSpacer width="1rem"/>
+												<l:VerticalLayout width="100%">
+													<l:HorizontalLayout>
+														<Label text="Material: " labelFor="compmat"/>
+														<Text id="compmat" text="{Material}" width="10rem"></Text>
+													</l:HorizontalLayout>
+													<l:HorizontalLayout>
+														<Label text="Material Description: " labelFor="compmatdesc"/>
+														<Text id="compmatdesc" text="{MatlDesc}"></Text>
+													</l:HorizontalLayout>
+													<l:HorizontalLayout>
+														<Label text="Item Category: " labelFor="compitemcat"/>
+														<Text id="compitemcat" text="{Itemcat}" width="5rem"></Text>
+													</l:HorizontalLayout>
+													<l:HorizontalLayout>
+														<Label text="Available Quantity: " labelFor="compavaiqty"/>
+														<Text id="compavaiqty" text="{AvailQuantity}"></Text>
+													</l:HorizontalLayout>
+													<l:HorizontalLayout>
+														<Label text="Operation Number: " labelFor="compoprno"/>
+														<Text id="compoprno" text="{Activity}"></Text>
+													</l:HorizontalLayout>
+													<l:HorizontalLayout>
+														<Label text="Storage Bin: " labelFor="compstgbin"/>
+														<Text id="compstgbin" text="{StgeLoc}"></Text>
+													</l:HorizontalLayout>
+													<l:HorizontalLayout>
+														<Label text="Required Quantity: " labelFor="compreqqty"/>
+														<Input id="compreqqty" value="{Requirementquantity}" editable="true"></Input>
+													</l:HorizontalLayout>
+												</l:VerticalLayout>
+											</l:HorizontalLayout>
+										</CustomListItem>
+									</items>
+								</List>
+							</ScrollContainer>
+						</IconTabFilter>
+						<IconTabFilter id="attachtabicon" icon="sap-icon://attachment" key="attachKey">
+							<OverflowToolbar class="sapUiMediumMarginTop">
+								<Title id="Title4" level="H1" text="Attachments"/>
+								<ToolbarSpacer/>
+							</OverflowToolbar>
+							<UploadCollection maximumFilenameLength="55" maximumFileSize="1000" fileDeleted="onFileDeleted"
+								filenameLengthExceed="onFilenameLengthExceed" fileRenamed="onFileRenamed" fileSizeExceed="onFileSizeExceed" id="UploadCollection"
+								mode="SingleSelectMaster" items="{/results}" multiple="true" instantUpload="false" change="onChangeImageUpload"
+								beforeUploadStarts="onBeforeUploadStarts" uploadComplete="onUploadComplete" noDataText="No files found."
+								noDataDescription="Drop files to upload, or use the &quot;+&quot; button."
+								uploadUrl="/sap/opu/odata/sap/ZPM_WO_SERVICE_SRV/WO_GET_ATTACHMENTSSet/">
+								<toolbar>
+									<OverflowToolbar id="myId">
+										<Title id="attachmentTitle"/>
+										<ToolbarSpacer/>
+										<Button id="Button" text="Upload" press="onStartUpload"/>
+										<UploadCollectionToolbarPlaceholder/>
+									</OverflowToolbar>
+								</toolbar>
+								<items>
+									<UploadCollectionItem documentId="{Brelguid}" fileName="{Objdes}"
+										url="/sap/opu/odata/sap/ZPM_WO_SERVICE_SRV/WO_GET_ATTACHMENTSSet(guid'{Brelguid}')/$value" mimeType="{FileExt}" deletePress="onDeletePress"
+										selected="true" enableDelete="true" visibleDelete="true" press="onimageurlclick"></UploadCollectionItem>
+								</items>
+							</UploadCollection>
+						</IconTabFilter>
+					</items>
+				</IconTabBar>
+			</VBox>
+		</semantic:content>
+		<!--Semantic ShareMenu Buttons-->
+		<semantic:titleMainAction></semantic:titleMainAction>
+		<!-- Custom Title Icon Content-->
+		<semantic:titleCustomIconActions></semantic:titleCustomIconActions>
+		<semantic:closeAction>
+			<semantic:CloseAction id="closeColumn" press=".onCloseDetailPress"/>
+		</semantic:closeAction>
+		<semantic:fullScreenAction>
+			<semantic:FullScreenAction id="enterFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; !${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
+		</semantic:fullScreenAction>
+		<semantic:exitFullScreenAction>
+			<semantic:ExitFullScreenAction id="exitFullScreen"
+				visible="{= !${device>/system/phone} &amp;&amp; ${appView>/actionButtonsInfo/midColumn/fullScreen}}" press=".toggleFullScreen"/>
+		</semantic:exitFullScreenAction>
+		<semantic:footerCustomActions>
+			<Button id="display" tooltip="Dsiplay" press="onDisp" icon="sap-icon://display" visible="false"/>
+			<Button id="release" tooltip="Release" press="onRel" icon="sap-icon://flag"/>
+			<Button id="edit" tooltip="Edit" press="onEdit" icon="sap-icon://edit"/>
+			<Button id="check" tooltip="validate" press="oncheck" icon="sap-icon://accept" visible="false"/>
+			<Button id="save" tooltip="Save" press="onRun" icon="sap-icon://save" type="Accept" visible="false"/>
+		</semantic:footerCustomActions>
+	</semantic:SemanticPage>
+</mvc:View>

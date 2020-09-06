@@ -1,0 +1,73 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core">
+	<VBox class="sapUiSmallMargin">
+		<f:SimpleForm id="headform" editable="false" layout="ResponsiveGridLayout" title="Address" labelSpanXL="3" labelSpanL="3" labelSpanM="3"
+			labelSpanS="12" adjustLabelSpan="false" emptySpanXL="4" emptySpanL="4" emptySpanM="4" emptySpanS="0" columnsXL="1" columnsL="1" columnsM="1"
+			singleContainerFullSize="false">
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Order Description">
+						<f:fields>
+							<Input value="{Ktext}" id="desc" editable="false"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Status">
+						<f:fields>
+							<Input editable="false" value="{Sttxt}" id="status"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Plant">
+						<f:fields>
+							<Input editable="false" value="{Werks}" id="plant"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="PM Activity Type">
+						<f:fields>
+							<Input editable="false" value="{Ilart}" id="ilart"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Basic Start Date">
+						<f:fields>
+							<Input editable="false" value="{Gstrp}" id="gstrp"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Basic Finish Date">
+						<f:fields>
+							<Input editable="false" value="{Gltrp}" id="gltrp"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Functional Locationr">
+						<f:fields>
+							<Input editable="false" value="{Tplnr}" id="tplnr"/>
+						</f:fields>
+					</f:FormElement>
+					<f:FormElement label="Equipment">
+						<f:fields>
+							<Input editable="false" value="{Equnr}" id="equnr"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+			<f:FormContainer>
+				<f:formElements>
+					<f:FormElement label="Work Center">
+						<f:fields>
+							<Input editable="false" value="{Arbpl}" id="arbpl"/>
+						</f:fields>
+					</f:FormElement>
+				</f:formElements>
+			</f:FormContainer>
+		</f:SimpleForm>
+	</VBox>
+</core:FragmentDefinition>
